@@ -1,37 +1,44 @@
 package com.lrcs.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_city")
-public class City implements Serializable {
+@Table(name="tb_event")
+public class Event implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String name;
+	private LocalDate date;
+	private String url;
 	
-	@OneToMany(mappedBy = "city")
-	private List<Event> events = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "city_id")
+	private City city;
 	
-	public City() {
+	public Event() {
 	}
 
-	public City(Long id, String name) {
+	public Event(Long id, String name, LocalDate date, String url, City city) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.date = date;
+		this.url = url;
+		this.city = city;
 	}
 
 	public Long getId() {
@@ -50,11 +57,28 @@ public class City implements Serializable {
 		this.name = name;
 	}
 
-	public List<Event> getEnvents() {
-		return events;
+	public LocalDate getDate() {
+		return date;
 	}
-	public void addEvents(Event event) {
-		events.add(event);
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 
 	@Override
@@ -70,11 +94,9 @@ public class City implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		City other = (City) obj;
+		Event other = (Event) obj;
 		return Objects.equals(id, other.id);
 	}
+	
 
-	
-	
-	
 }
