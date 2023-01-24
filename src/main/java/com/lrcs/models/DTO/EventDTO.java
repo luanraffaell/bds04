@@ -10,20 +10,23 @@ public class EventDTO {
 	private String name;
 	private LocalDate date;
 	private String url;
+	private Long cityId;
 	
 	public EventDTO(Event event) {
 		id = event.getId();
 		name = event.getName();
 		date = event.getDate();
 		url = event.getUrl();
+		cityId = event.getCity().getId();
 	}
 	
-	public EventDTO(Long id, String name, LocalDate date, String url) {
+	public EventDTO(Long id, String name, LocalDate date, String url,Long cityId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.date = date;
 		this.url = url;
+		this.cityId = cityId;
 	}
 
 	public Long getId() {
@@ -56,6 +59,14 @@ public class EventDTO {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Long getCityId() {
+		return cityId;
+	}
+
+	public void setCityDTO(CityDTO cityDTO) {
+		this.cityId = cityDTO.getId();
 	}
 	
 	
