@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class City implements Serializable {
 	private Long id;
 	private String name;
 	
-	@OneToMany(mappedBy = "city")
+	@OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
 	private List<Event> events = new ArrayList<>();
 	
 	public City() {
