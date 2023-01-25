@@ -2,6 +2,8 @@ package com.lrcs.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,7 @@ public class CityController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<CityDTO> insert(@RequestBody CityDTO city){
+	public ResponseEntity<CityDTO> insert(@RequestBody @Valid CityDTO city){
 		city = cityService.insert(city);
 		return ResponseEntity.status(HttpStatus.CREATED).body(city);
 	}

@@ -2,14 +2,21 @@ package com.lrcs.models.DTO;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.lrcs.models.Event;
 
 public class EventDTO {
 
 	private Long id;
+	@NotBlank
 	private String name;
+	@FutureOrPresent
 	private LocalDate date;
 	private String url;
+	@NotNull
 	private Long cityId;
 	
 	public EventDTO(Event event) {

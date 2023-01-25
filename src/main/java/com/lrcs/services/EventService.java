@@ -13,6 +13,7 @@ import com.lrcs.models.Event;
 import com.lrcs.models.DTO.EventDTO;
 import com.lrcs.repositories.CityRepository;
 import com.lrcs.repositories.EventRepository;
+import com.lrcs.services.exceptions.BusinessException;
 import com.lrcs.services.exceptions.EntityNotFoundException;
 
 @Service
@@ -31,7 +32,12 @@ public class EventService {
 	
 	@Transactional
 	public EventDTO insert(EventDTO eventDTO) {
-		Event event = dtoToEvent(eventDTO);
+		Event event = null;
+		try {
+		event = dtoToEvent(eventDTO);
+		}catch(EntityNotFoundException e) {
+			throw new BusinessException(e.getMessage());
+		}
 		
 		return new EventDTO(eventRepository.save(event));
 	}

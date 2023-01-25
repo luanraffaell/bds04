@@ -3,11 +3,14 @@ package com.lrcs.models.DTO;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 import com.lrcs.models.City;
 
 public class CityDTO {
 	
 	private Long id;
+	@NotBlank
 	private String name;
 	private List<EventDTO> events = new ArrayList<>();
 	

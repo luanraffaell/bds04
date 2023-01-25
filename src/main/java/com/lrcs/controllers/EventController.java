@@ -2,6 +2,8 @@ package com.lrcs.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,7 @@ public class EventController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<EventDTO> insert(@RequestBody EventDTO event){
+	public ResponseEntity<EventDTO> insert(@RequestBody @Valid EventDTO event){
 		event = eventService.insert(event);
 		return ResponseEntity.status(HttpStatus.CREATED).body(event);
 	}
