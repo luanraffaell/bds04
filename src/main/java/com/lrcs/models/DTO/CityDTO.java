@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.lrcs.models.City;
 
+@JsonInclude(Include.NON_NULL)
 public class CityDTO {
 	
 	private Long id;
